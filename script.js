@@ -29,6 +29,9 @@ mostrarConteudo();
 
 
 
+let audioAcertou = document.querySelector('#audio-acertou');
+let audioErrou = document.querySelector('#audio-errou');
+
 let opcoesCorretas = 0;
 
 function opcaoClicada(event) {
@@ -36,6 +39,15 @@ function opcaoClicada(event) {
 
     if (questions[questaoAtual].answer === opClicada) {
         opcoesCorretas++;
+        if (audioAcertou) {
+            audioAcertou.currentTime = 0;
+            audioAcertou.play();
+        }
+    } else {
+        if (audioErrou) {
+            audioErrou.currentTime = 0;
+            audioErrou.play();
+        }
     }
 
     questaoAtual++;
