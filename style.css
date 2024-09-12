@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -10,13 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #333;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-    color: #FFF;
-    margin: 20px 0;
+    background-image: linear-gradient(to bottom, #004d00 0%, #003300 50%, #001a00 100%);
+    font-family: 'Patrick Hand';
 }
 
 .progress {
@@ -28,7 +25,7 @@ h1 {
 }
 
 .progress--bar {
-    background-color: #00FF00;
+    background-color: #FFF;
     height: 100%;
     transition: all ease .5s;
 }
@@ -45,7 +42,7 @@ h1 {
 
 .question {
     color: #FFF;
-    font-size: 18px;
+    font-size: 25px;
     margin: 20px 0;
 }
 
@@ -56,8 +53,8 @@ h1 {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     margin-bottom: 5px;
-    color: #AAA;
-    font-size: 16px;
+    color: #FFF;
+    font-size: 20px;
     cursor: pointer;
 }
 
@@ -107,7 +104,7 @@ h1 {
 }
 
 .scoreText2 {
-    font-size: 16px;
+    font-size: 20px;
     color: #000;
     margin-bottom: 10px;
 }
@@ -124,4 +121,11 @@ h1 {
 
 .scoreArea button:hover {
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+@media(max-width: 500px){
+    .questionArea {
+        max-width: none;
+        width: 70%;
+    }
 }

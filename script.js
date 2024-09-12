@@ -40,11 +40,13 @@ function opcaoClicada(event) {
     if (questions[questaoAtual].answer === opClicada) {
         opcoesCorretas++;
         if (audioAcertou) {
+            audioErrou.pause();
             audioAcertou.currentTime = 0;
             audioAcertou.play();
         }
     } else {
         if (audioErrou) {
+            audioAcertou.pause();
             audioErrou.currentTime = 0;
             audioErrou.play();
         }
@@ -54,6 +56,11 @@ function opcaoClicada(event) {
     mostrarConteudo();
 }
 
+
+let audioNota10 = document.querySelector('#audio-nota10');
+let audioNotaAcima7 = document.querySelector('#audio-notaAcima7');
+let audioNotaAbaixo7 = document.querySelector('#audio-notaAbaixo7');
+let audioNota0 = document.querySelector('#audio-nota0');
 
 let pctUsuario = 0;
 
@@ -66,12 +73,26 @@ function finalizarQuiz() {
     document.querySelector('.scoreArea').style.display = 'block';
 
     let congrats = '';
-    if (pctUsuario < 40) {
-        congrats = 'Sua nota ficou muito abaixo da média.'
-    } else if (pctUsuario < 70) {
-        congrats = 'Infelizmente você não atingiu a média.'
+    if (opcoesCorretas == 0) {
+        audioErrou.pause();
+        audioAcertou.pause();
+        audioNota0.play();
+        congrats = 'Você sabe o que é JavaScript?';
+    } else if (opcoesCorretas > 0 && opcoesCorretas < 7) {
+        audioErrou.pause();
+        audioAcertou.pause();
+        audioNotaAbaixo7.play();
+        congrats = 'Infelizmente você não atingiu a média...';
+    } else if (opcoesCorretas >= 7 && opcoesCorretas < 10) {
+        audioErrou.pause();
+        audioAcertou.pause();
+        audioNotaAcima7.play();
+        congrats = 'Parabéns!'
     } else {
-        congrats = 'Parabéns!';
+        audioErrou.pause();
+        audioAcertou.pause();
+        audioNota10.play();
+        congrats = 'Parabens, você tirou a nota máxima!'
     }
     document.querySelector('.scoreText1').innerHTML = congrats;
     document.querySelector('.scorePct').innerHTML = `Acertou ${pctUsuario}%`;
@@ -89,6 +110,5 @@ function resetarQuiz() {
 
     document.querySelector('.progress--bar').style.width = '0%';
 
-    document.querySelector('.scoreArea').style.display = 'none';
-    document.querySelector('.questionArea').style.display = 'block';
+    mostrarConteudo();
 }
